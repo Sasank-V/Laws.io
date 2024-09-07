@@ -1,6 +1,6 @@
 const LOTD = ({ setShow }) => {
     return (
-        <div className="text-white bg-[#003366] rounded-[50px] w-full h-full text-center flex flex-col items-center transition-all duration-500">
+        <div className="text-white bg-[#003366] rounded-[50px] w-full h-full text-center flex flex-col">
             <div className="text-[40px] pt-2 md:text-[70px]">Law of the Day</div>
             <div className="h-[1px] w-[90%] bg-white"></div>
             <div className="text-[20px] md:text-[30px] mt-10">Law: Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)</div>
