@@ -49,11 +49,11 @@ const Navbar = ({ pageNumber, setPageNumber }) => {
                 <div className="flex flex-col gap-3">
                     <div className={`size-[35px] flex items-center gap-2 cursor-pointer w-full`} onClick={() => setPageNumber(5)}>
                         <img src={InfoIcon} alt="" className={`${pageNumber == 5 ? "invert bg-black rounded-lg" : "invert-0"} size-[35px]`} />
-                        <span className={`${navOpen ? "visible" : "hidden"} text-sm`}>Home</span>
+                        <span className={`${navOpen ? "visible" : "hidden"} text-sm`}>Help</span>
                     </div>
                     <div className={`size-[35px] flex items-center gap-2 cursor-pointer mb-5 w-full`} onClick={() => setPageNumber(6)}>
-                        <img src={ExitIcon} alt="" className={`${pageNumber == 6 ? "invert bg-black rounded-lg" : "invert-0"} size-[35px]`} />
-                        <span className={`${navOpen ? "visible" : "hidden"} text-sm`}>Home</span>
+                        <img src={ExitIcon} alt="" className="size-[35px]" />
+                        <span className={`${navOpen ? "visible" : "hidden"} text-[#D33543] text-sm`}>Logout</span>
                     </div>
                 </div>
             </div>
