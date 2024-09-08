@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
@@ -9,6 +8,7 @@ import Login from "./screens/Login.jsx";
 import LOTD from './screens/LOTDPage.jsx';
 import MCQPage from './screens/McqPage.jsx';
 import StartPage from './screens/StartPage.jsx';
+
 function App() {
   const [pageNumber, setPageNumber] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
@@ -18,6 +18,7 @@ function App() {
   const [simplifiedLaw, setSimplifiedLaw] = useState('');
   const [detailedLaw, setDetailedLaw] = useState({});
   const [mcqData, setMcqData] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const url = 'http://localhost:3000/ai/getQuiz';
 
@@ -90,51 +91,55 @@ function App() {
     fetchDetailedLawDetails();
   }, [law]);
 
-  return (
-    <div>
-      <Login></Login>
-    <Router>
-      <div className="w-full h-full min-h-screen flex text-[#CCCCCC] font-inria overflow-x-hidden">
-        <SideBar
-          pageNumber={pageNumber}
-          setPageNumber={setPageNumber}
-          navOpen={navOpen}
-          setNavOpen={setNavOpen}
-        />
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
 
-        <div className="flex-1 overflow-x-hidden">
-          <Routes>
-            {/* Main Start Page */}
-            <Route
-              path="/"
-              element={<StartPage setPageNumber={setPageNumber} />}
-            />
-            {/* LOTD Page with transition */}
-            <Route
-              path="/LOTD"
-              element={
-                <LOTD
-                  setPageNumber={setPageNumber}
-                  simplifiedLaw={simplifiedLaw}
-                  detailedLaw={detailedLaw}
-                  lawName={law}
-                />
-              }
-            />
-            {/* MCQ Quiz Page */}
-            <Route
-              path="/Quiz"
-              element={
-                <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
-              }
-            />
-            <Route path="/Case" element={<CaseStudy />} />
-            <Route path="/Leaderboard" element={<Leaderboard />} />
-          </Routes>
+  return (
+    <Router>
+      {isAuthenticated ? (
+        <div className="w-full h-full min-h-screen flex text-[#CCCCCC] font-inria overflow-x-hidden">
+          <SideBar
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+            navOpen={navOpen}
+            setNavOpen={setNavOpen}
+          />
+          <div className="flex-1 overflow-x-hidden">
+            <Routes>
+              {/* Main Start Page */}
+              <Route
+                path="/"
+                element={<StartPage setPageNumber={setPageNumber} />}
+              />
+              {/* LOTD Page with transition */}
+              <Route
+                path="/LOTD"
+                element={
+                  <LOTD
+                    setPageNumber={setPageNumber}
+                    simplifiedLaw={simplifiedLaw}
+                    detailedLaw={detailedLaw}
+                    lawName={law}
+                  />
+                }
+              />
+              {/* MCQ Quiz Page */}
+              <Route
+                path="/Quiz"
+                element={
+                  <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
+                }
+              />
+              <Route path="/Case" element={<CaseStudy />} />
+              <Route path="/Leaderboard" element={<Leaderboard />} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      ) : (
+        <Login onLoginSuccess={handleLoginSuccess} />
+      )}
     </Router>
-    </div>
   );
 }
 

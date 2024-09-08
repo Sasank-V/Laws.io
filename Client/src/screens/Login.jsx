@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Background from "../assets/BackgroundLogin.png";
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -39,6 +39,9 @@ const Login = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     console.log('Login data:', loginData);
+
+    // Simulate login success
+    onLoginSuccess();
   };
 
   const handleSignUpSubmit = (e) => {
@@ -109,7 +112,7 @@ const Login = () => {
                 type="password"
                 name="password"
                 id="password"
-                placeholder='Must be at least 8 characters'
+                placeholder='Password'
                 value={signUpData.password}
                 onChange={handleSignUpChange}
                 className="w-full p-2 mt-1 border rounded text-black"
@@ -122,31 +125,25 @@ const Login = () => {
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
-                placeholder='Repeat password'
+                placeholder='Confirm Password'
                 value={signUpData.confirmPassword}
                 onChange={handleSignUpChange}
                 className="w-full p-2 mt-1 border rounded text-black"
                 required
               />
             </div>
-
-            {errorMessage && <p className="text-red-500 text-center">{errorMessage}</p>}
-
-            <div className='w-full flex'>
-              <button
-                type="submit"
-                className="w-4/5 p-2 text-black bg-[#FFD700] rounded hover:bg-[#06870B] hover:text-white ml-auto mr-auto font-semibold sm:text-2xl text:xl"
-              >
-                Sign Up!
-              </button>
-            </div>
-            <p className="text-sm md:text-base text-center">
+            {errorMessage && (
+              <p className="text-red-500 text-center">{errorMessage}</p>
+            )}
+            <button
+              type="submit"
+              className="w-full p-2 bg-[#FFD700] text-black rounded font-bold text-lg"
+            >
+              Sign Up
+            </button>
+            <p className="text-center text-sm text-white">
               Already have an account?{' '}
-              <button
-                type="button"
-                onClick={toggleForm}
-                className="text-blue-500 hover:underline"
-              >
+              <button onClick={toggleForm} className="text-[#FFD700] font-medium">
                 Login
               </button>
             </p>
@@ -159,7 +156,7 @@ const Login = () => {
                 type="text"
                 name="username"
                 id="username"
-                placeholder='Name'
+                placeholder='Username'
                 value={loginData.username}
                 onChange={handleLoginChange}
                 className="w-full p-2 mt-1 border rounded text-black"
@@ -179,21 +176,15 @@ const Login = () => {
                 required
               />
             </div>
-            <div className='w-full flex'>
-              <button
-                type="submit"
-                className="w-4/5 p-2 text-black bg-[#FFD700] rounded hover:bg-[#06870B] hover:text-white ml-auto mr-auto font-semibold sm:text-2xl text:xl"
-              >
-                Login!
-              </button>
-            </div>
-            <p className="text-sm md:text-base text-center">
+            <button
+              type="submit"
+              className="w-full p-2 bg-[#FFD700] text-black rounded font-bold text-lg"
+            >
+              Login
+            </button>
+            <p className="text-center text-sm text-white">
               Don't have an account?{' '}
-              <button
-                type="button"
-                onClick={toggleForm}
-                className="text-blue-500 hover:underline"
-              >
+              <button onClick={toggleForm} className="text-[#FFD700] font-medium">
                 Sign Up
               </button>
             </p>
