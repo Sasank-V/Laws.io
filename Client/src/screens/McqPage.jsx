@@ -3,10 +3,9 @@ import Bro from "../assets/MCQ-Bro.png";
 
 import Option from "../components/MCQPage/Option";
 
-const McqPage = ({ show, navOpen }) => {
+const McqPage = () => {
     return (
-        <div className={`flex flex-col transition-all duration-150 bg-red-300 w-full`}
-            style={{ transform: show === false ? 'scale(0)' : 'scale(1)' }}>
+        <div className={`flex flex-col transition-all duration-150 w-full`}>
             <div className="w-full h-[70px] md:h-[100px] flex flex-col items-center">
                 <div className=" flex w-full justify-end px-1 sm:px-12 py-4">
                     <div className="flex justify-center items-center pr-6">
