@@ -3,48 +3,11 @@ import Coin from "../assets/MCQ-Coin.png";
 import Bro from "../assets/MCQ-Bro.png";
 import Option from "../components/MCQPage/Option";
 
-const McqPage = () => {
-  const [mcqData, setMcqData] = useState([]);
+const McqPage = ({ mcqData }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [score, setScore] = useState(100);  
+  const [score, setScore] = useState(100);
   const [gotAns, setGotAns] = useState(false);
   const [showAns, setShowAns] = useState(false);
-
-  const law = "Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)";
-  const url = "http://localhost:3000/ai/getQuiz";
-
-  // Fetch MCQs from the API
-  const getMCQs = async (law) => {
-    try {
-      const briefUrl = `${url}?law=${encodeURIComponent(law)}`;
-      const response = await fetch(briefUrl, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      return data;
-
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    const fetchMCQs = async () => {
-      const data = await getMCQs(law);
-      if (data) {
-        const mcqs = Object.keys(data).map(key => data[key]);
-        setMcqData(mcqs);
-      }
-    };
-
-    fetchMCQs();
-  }, [law]);
 
   if (mcqData.length === 0) return <div className='w-full h-full flex justify-center items-center'>Loading...</div>;
 
