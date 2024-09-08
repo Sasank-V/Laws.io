@@ -5,9 +5,11 @@ import cors from "cors";
 import { simplifyLaw,expandLaw,getMCQs} from './GeminiUtils.js';
 
 const app = express();
+
 dotenv.config();
 app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send("Hello , I am Groot!");
@@ -19,8 +21,8 @@ app.get("/ai/briefLaw",async (req,res)=>{
   try{
     const law = req.query.law
     const response = await simplifyLaw(law);
-    console.log(response.candidates[0].content.parts);
-    const simplifiedLaw = response.candidates[0].content.parts[0].text;
+    let simplifiedLaw = response.candidates[0]?.content?.parts[0]?.text;
+    console.log(simplifiedLaw)
     res.send(simplifiedLaw);
   } catch(e) {
     console.log("Error while Fetching the Brief of the Law");

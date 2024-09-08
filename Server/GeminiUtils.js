@@ -12,6 +12,7 @@ const simplifyLaw = async (law) => {
     - Provide 1 brief real-world example of the law's impact.
     - Avoid legal jargon or explain any technical terms immediately.
     - Keep the total explanation within 100 words.
+    - Dont give any special characters just alphanumerics
     As a legal expert, make the law's essentials clear and accessible to someone without legal training.`;
 
     try {
@@ -34,14 +35,16 @@ const expandLaw = async (law) => {
     - Provides 2-3 specific examples of how the law applies in real-life situations.
     - Briefly mentions any significant legal precedents or court interpretations, if applicable.
     - Explains potential implications or effects of the law on different groups or sectors.
+    - Dont add any font formatting
     Use clear, simple language throughout. If you must use legal terms, define them immediately. 
     Your Response should be in JSON format in the below structure
     - "Law": An In-Depth Explanation
     - "History": Its content
-    - "KeyProvision":Its content
-    - "PracticalApps" : Its content
+    - "KeyProvision":Its content without formatting
+    - "PracticalApps" : Its content without formatting
     -  "Penalties" : Its content
     - "Summary" : Its content
+    - Dont give any special characters just alphanumerics
     No need to add any extra characters before or after the json data. 
     `;
 
