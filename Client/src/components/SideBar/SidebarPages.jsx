@@ -22,7 +22,7 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
                     <img src={FourCircles} alt="" className={`${pageNumber == 2 ? "invert bg-black rounded-lg" : "invert-0"} size-[35px]`} />
                     <span className={`${navOpen ? "visible" : "hidden"} text-sm`}>MCQ's</span>
                 </Link>
-                <Link to="/" className={`size-[35px] flex items-center gap-2 cursor-pointer w-full`} onClick={() => setPageNumber(3)}>
+                <Link to="/Case" className={`size-[35px] flex items-center gap-2 cursor-pointer w-full`} onClick={() => setPageNumber(3)}>
                     <img src={Hat} alt="" className={`${pageNumber == 3 ? "invert bg-black rounded-lg" : "invert-0"} size-[35px]`} />
                     <span className={`${navOpen ? "visible" : "hidden"} text-sm`}>Case Study</span>
                 </Link>
