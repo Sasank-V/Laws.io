@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import Coin from "../assets/MCQ-Coin.png";
-import Bro from "../assets/MCQ-Bro.png";
-import Option from "../components/MCQPage/Option";
+import Coin from '../assets/MCQ-Coin.png';
+import Bro from '../assets/MCQ-Bro.png';
+import Option from '../components/MCQPage/Option';
+import { useNavigate } from 'react-router-dom';
 
 const McqPage = ({ mcqData }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -9,7 +10,14 @@ const McqPage = ({ mcqData }) => {
   const [gotAns, setGotAns] = useState(false);
   const [showAns, setShowAns] = useState(false);
 
-  if (mcqData.length === 0) return <div className='w-full h-full flex justify-center items-center'>Loading...</div>;
+  const navigate = useNavigate();
+
+  if (mcqData.length === 0)
+    return (
+      <div className="w-full h-full flex justify-center items-center">
+        Loading...
+      </div>
+    );
 
   const mcq = mcqData[currentQuestionIndex];
   const { question, option1, option2, option3, option4 } = mcq;
@@ -17,25 +25,29 @@ const McqPage = ({ mcqData }) => {
   // Handle answer selection
   const handleAnswer = (selectedOption) => {
     if (!gotAns) {
-      setGotAns(true);  // User has selected an answer
+      setGotAns(true); // User has selected an answer
 
       if (selectedOption === 'r') {
-        setScore(prev => prev + 20);  // Correct answer
+        setScore((prev) => prev + 20); // Correct answer
       } else {
-        setScore(prev => prev - 10);  // Wrong answer
+        setScore((prev) => prev - 10); // Wrong answer
         setShowAns(true); // Show correct answer
       }
 
       // Move to the next question after a short delay
     }
-};
+  };
 
-const nextQues = () => {
-    setCurrentQuestionIndex(prev => prev + 1);
+  const nextQues = () => {
+    if (currentQuestionIndex == 9) {
+      navigate('/Case');
+      return;
+    }
+    setCurrentQuestionIndex((prev) => prev + 1);
     setGotAns(false);
     setShowAns(false);
     // Reset states for the next question
-  }
+  };
 
   // Reset states when moving to the next question
 
@@ -45,11 +57,9 @@ const nextQues = () => {
         <div className="flex w-full justify-end px-1 sm:px-12 py-4">
           <div className="flex justify-center items-center pr-6">
             <div>
-              <img src={Coin} alt="Coin"/>
+              <img src={Coin} alt="Coin" />
             </div>
-            <div className="ml-3 font-bold">
-              {score}
-            </div>
+            <div className="ml-3 font-bold">{score}</div>
           </div>
         </div>
         <div className="h-[4px] w-[90%] bg-[#D9D9D9]">
@@ -58,63 +68,70 @@ const nextQues = () => {
       </div>
       <div className="flex flex-wrap w-full h-[88%]">
         <div className="w-[100%] mt-3 md:w-[35%] md:mt-0 flex items-center justify-center">
-          <img src={Bro} className="size-[250px] sm:size-[300px] md:size-auto" alt="Bro" />
+          <img
+            src={Bro}
+            className="size-[250px] sm:size-[300px] md:size-auto"
+            alt="Bro"
+          />
         </div>
         <div className="w-[100%] md:w-[65%] flex flex-col p-5 justify-center items-center">
           <div className="h-[25%] w-[90%] lg:text-2xl mb-5 flex justify-center items-center">
             {question}
           </div>
           <div className="h-[75%] w-[85%] flex flex-col text-md md:text-xl font-semibold">
-            <Option 
-              text={option1[0]} 
-              type={option1[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+            <Option
+              text={option1[0]}
+              type={option1[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
+              show={[showAns, setShowAns]}
               currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option1[1])}
             />
-            <Option 
-              text={option2[0]} 
-              type={option2[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
+            <Option
+              text={option2[0]}
+              type={option2[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
               show={[showAns, setShowAns]}
-              currentQuestionIndex={currentQuestionIndex} 
+              currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option2[1])}
             />
-            <Option 
-              text={option3[0]} 
-              type={option3[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+            <Option
+              text={option3[0]}
+              type={option3[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
+              show={[showAns, setShowAns]}
               currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option3[1])}
             />
-            <Option 
-              text={option4[0]} 
-              type={option4[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+            <Option
+              text={option4[0]}
+              type={option4[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
+              show={[showAns, setShowAns]}
               currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option4[1])}
             />
           </div>
-          <div className="flex mt-3">
-            <div className="text-white" onClick={nextQues}>
-                Next
+          <div className="w-full mt-3">
+            <div
+              className="ml-auto mr-12 w-fit bg-[#ffd700] px-5 py-2 rounded-md text-[#0F152D] text-lg"
+              onClick={nextQues}
+            >
+              Next
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default McqPage;
