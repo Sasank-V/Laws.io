@@ -31,7 +31,15 @@ const SidebarDefault = ({
             className="absolute size-[25px] p-0.5 transition-all duration-150 ease-in-out right-[-13px] top-[8px] border-[1px] cursor-pointer z-10 border-white rounded-lg bg-[#0F152D]"
             onClick={() => setNavOpen(!navOpen)}
           >
-            <img src={ExpandIcon} alt="" />
+            <img
+              src={ExpandIcon}
+              className={
+                navOpen
+                  ? 'rotate-180 ease-in-out duration-750'
+                  : 'ease-in-out duration-750'
+              }
+              alt=""
+            />
           </div>
         </div>
         <div
