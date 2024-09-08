@@ -63,17 +63,16 @@ const getMCQs = async (law) => {
     const prompt = `You are an AI legal assistant designed to create multiple-choice questions (MCQs) that test the understanding of legal concepts by common citizens. 
     The citizens have just learned about a specific law in a simplified manner. Based on the law provided, generate questions that assess their basic understanding and ability to apply the law in everyday situations.
     The specific law is: ${law}.
-    Generate 10 MCQs, each with four options and one correct answer. I need the response in the JSON format with the below structure:
-    {
-        "1" : {
+    Generate 10 MCQs, each with four options and one correct answer. I need the response in the  Array of Javascript Objects format with the below structure:
+    [
+        {
             "question" : "The Question",
-            "option1" : "something",
-            "option2" : "something",
-            "option3" : "something",
-            "option4" : "something",
-            "ans" : "option2"(which is the correct one for that question ,Don't make the ans always the option2),
-        },"2" : {}... And so on
-    } , I don't need any extra Characters to be before and after your response`;
+            "option1" : ["option content","color"]("r"- For Correct Answer, "w" -For Wrong Answer) ,
+            "option2" : ["option content","color"],
+            "option3" : ["option content","color"],
+            "option4" : ["option content","color"],
+        },{}... And so on
+    } Make the Right option random for each question , Don't make it the same option for all the questions, I don't need any extra Characters to be before and after your response`;
 
     try {
         const result = await model.generateContent(prompt);
