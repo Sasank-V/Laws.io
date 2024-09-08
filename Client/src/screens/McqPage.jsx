@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Coin from "../assets/MCQ-Coin.png";
 import Bro from "../assets/MCQ-Bro.png";
 import Option from "../components/MCQPage/Option";
+import Loading from '../components/Loading';
 
 const McqPage = ({ mcqData }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -10,7 +11,10 @@ const McqPage = ({ mcqData }) => {
   const [showAns, setShowAns] = useState(false);
   const [done,setDone] = useState(false);
 
-  if (mcqData.length === 0) return <div className='w-full h-full flex justify-center items-center'>Loading...</div>;
+  if (mcqData.length === 0)
+    return (
+      <Loading />
+    );
 
   const mcq = mcqData[currentQuestionIndex];
   const { question, option1, option2, option3, option4 } = mcq;
@@ -29,7 +33,8 @@ const McqPage = ({ mcqData }) => {
 
       // Move to the next question after a short delay
     }
-};
+  };
+
 
 const nextQues = () => {
     console.log(mcqData.length);
