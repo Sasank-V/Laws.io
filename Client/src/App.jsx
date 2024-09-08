@@ -19,7 +19,7 @@ function App() {
   const [detailedLaw, setDetailedLaw] = useState({});
   const [mcqData, setMcqData] = useState([]);
 
-  const url = "http://localhost:3000/ai/getQuiz";
+  const url = 'http://localhost:3000/ai/getQuiz';
 
   // Fetch MCQs from the API
   const getMCQs = async (law) => {
@@ -62,9 +62,12 @@ function App() {
   useEffect(() => {
     const fetchSimplifiedLawDetails = async () => {
       // if (simplifiedLaw !== "") return;
-      const resSimplified = await fetch(`http://localhost:3000/ai/briefLaw?law=${encodeURIComponent(law)}`, {
-        method: "GET",
-      });
+      const resSimplified = await fetch(
+        `http://localhost:3000/ai/briefLaw?law=${encodeURIComponent(law)}`,
+        {
+          method: 'GET',
+        }
+      );
 
       const text = await resSimplified.text();
       setSimplifiedLaw(text);
@@ -72,9 +75,12 @@ function App() {
 
     const fetchDetailedLawDetails = async () => {
       // if (detailedLaw !== "") return;
-      const resSimplified = await fetch(`http://localhost:3000/ai/describeLaw?law=${encodeURIComponent(law)}`, {
-        method: "GET",
-      });
+      const resSimplified = await fetch(
+        `http://localhost:3000/ai/describeLaw?law=${encodeURIComponent(law)}`,
+        {
+          method: 'GET',
+        }
+      );
 
       const text = await resSimplified.json();
       setDetailedLaw(text);
@@ -95,6 +101,7 @@ function App() {
           navOpen={navOpen}
           setNavOpen={setNavOpen}
         />
+
         <div className="flex-1 overflow-x-hidden">
           <Routes>
             {/* Main Start Page */}
@@ -115,7 +122,12 @@ function App() {
               }
             />
             {/* MCQ Quiz Page */}
-            <Route path="/Quiz" element={<MCQPage mcqData={mcqData} />} />
+            <Route
+              path="/Quiz"
+              element={
+                <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
+              }
+            />
             <Route path="/Case" element={<CaseStudy />} />
             <Route path="/Leaderboard" element={<Leaderboard />} />
           </Routes>

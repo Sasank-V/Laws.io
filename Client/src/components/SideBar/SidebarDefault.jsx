@@ -5,6 +5,7 @@ import LeaderIcon from '../../assets/LeaderIcon.png';
 import ExitIcon from '../../assets/Exit.png';
 import SidebarPages from './SidebarPages';
 import { Link } from 'react-router-dom';
+import GoogleTranslate from './GoogleTranslate';
 
 const SidebarDefault = ({
   pageNumber,
@@ -31,7 +32,15 @@ const SidebarDefault = ({
             className="absolute size-[25px] p-0.5 transition-all duration-150 ease-in-out right-[-13px] top-[8px] border-[1px] cursor-pointer z-10 border-white rounded-lg bg-[#0F152D]"
             onClick={() => setNavOpen(!navOpen)}
           >
-            <img src={ExpandIcon} alt="" />
+            <img
+              src={ExpandIcon}
+              className={
+                navOpen
+                  ? 'rotate-180 ease-in-out duration-750'
+                  : 'ease-in-out duration-750'
+              }
+              alt=""
+            />
           </div>
         </div>
         <div
@@ -48,6 +57,7 @@ const SidebarDefault = ({
           className={`h-[2px] ${navOpen ? 'w-[85%]' : 'w-[70%]'} bg-white mb-5`}
         ></div>
         <div className="flex-grow"></div>
+        <GoogleTranslate />
         <div className="flex flex-col gap-3">
           <Link to="/leaderboard">
             <div
