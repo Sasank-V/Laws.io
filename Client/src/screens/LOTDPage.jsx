@@ -2,7 +2,7 @@ import Background from "../assets/BackgroundLOTD.png"
 
 const LOTD = ({ setShow }) => {
     return (
-        <div className="text-white  rounded-[50px] w-full h-full text-center flex flex-col " style={{ backgroundImage: `url(${Background}) ` }}>
+        <div className="text-white  rounded-[50px] w-full h-full text-center flex flex-col bg-[#003366]">
             <div className="text-[40px] pt-2 md:text-[70px]">Law of the Day</div>
             <div className="h-[1px] w-[90%] bg-white ml-auto mr-auto"></div>
             <div className="text-[20px] md:text-[30px] mt-10">Law: Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)</div>
