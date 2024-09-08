@@ -70,8 +70,8 @@ app.get("/ai/getQuiz", async (req,res)=>{
       res.send(data);
     }
   }catch(e){
+    res.status(501).send("Error in fetching MCQ's");
     console.log("Error in Getting MCQs");
-    res.send(e);
   }
 });
 
