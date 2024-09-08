@@ -1,16 +1,14 @@
 
-import { useEffect, useState } from 'react';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import StartPage from './screens/StartPage.jsx';
-import MCQPage from './screens/McqPage.jsx';
-import LOTD from './screens/LOTDPage.jsx';
+import React, { useEffect, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import SideBar from './components/SideBar/SideBar.jsx';
 import CaseStudy from './screens/CaseStudy.jsx';
 import Leaderboard from './screens/Leaderboard.jsx';
-
+import Login from "./screens/Login.jsx";
+import LOTD from './screens/LOTDPage.jsx';
+import MCQPage from './screens/McqPage.jsx';
+import StartPage from './screens/StartPage.jsx';
 function App() {
   const [pageNumber, setPageNumber] = useState(0);
   const [navOpen, setNavOpen] = useState(false);
@@ -87,6 +85,8 @@ function App() {
   }, [law]);
 
   return (
+    <div>
+      <Login></Login>
     <Router>
       <div className="w-full h-full min-h-screen flex text-[#CCCCCC] font-inria overflow-x-hidden">
         <SideBar
@@ -122,6 +122,7 @@ function App() {
         </div>
       </div>
     </Router>
+    </div>
   );
 }
 

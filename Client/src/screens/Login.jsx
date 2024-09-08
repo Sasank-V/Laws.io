@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Background from "../assets/BackgroundLogin.png";
 
-export const Login = () => {
+const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -50,9 +50,19 @@ export const Login = () => {
       return;
     }
 
-    // If passwords match, proceed
+    // Check if password is at least 8 characters long
+    if (signUpData.password.length < 8) {
+      setErrorMessage('Password must be at least 8 characters long!');
+      return;
+    }
+
+    // If passwords match and meet length requirement, proceed
     console.log('Sign Up data:', signUpData);
     setErrorMessage(''); // Clear any error messages
+
+    // Show success message and redirect to login
+    alert('Sign Up Successful!');
+    setIsSignUp(false); // Switch to login form
   };
 
   return (
@@ -99,7 +109,7 @@ export const Login = () => {
                 type="password"
                 name="password"
                 id="password"
-                placeholder='must be 8 characters'
+                placeholder='Must be at least 8 characters'
                 value={signUpData.password}
                 onChange={handleSignUpChange}
                 className="w-full p-2 mt-1 border rounded text-black"
@@ -112,7 +122,7 @@ export const Login = () => {
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
-                placeholder='repeat password'
+                placeholder='Repeat password'
                 value={signUpData.confirmPassword}
                 onChange={handleSignUpChange}
                 className="w-full p-2 mt-1 border rounded text-black"
@@ -193,3 +203,5 @@ export const Login = () => {
     </div>
   );
 };
+
+export default Login;
