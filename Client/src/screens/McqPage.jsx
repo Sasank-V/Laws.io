@@ -60,22 +60,21 @@ const McqPage = () => {
         setScore(prev => prev + 20);  // Correct answer
       } else {
         setScore(prev => prev - 10);  // Wrong answer
-        setShowAns(true);  // Show correct answer
+        setShowAns(true); // Show correct answer
       }
 
       // Move to the next question after a short delay
-      setTimeout(() => {
-        setCurrentQuestionIndex(prev => prev + 1);
-        resetStates();  // Reset states for the next question
-      }, 1000);
     }
-  };
+};
 
-  // Reset states when moving to the next question
-  const resetStates = () => {
+const nextQues = () => {
+    setCurrentQuestionIndex(prev => prev + 1);
     setGotAns(false);
     setShowAns(false);
-  };
+    // Reset states for the next question
+  }
+
+  // Reset states when moving to the next question
 
   return (
     <div className="flex flex-col transition-all duration-150 w-full">
@@ -83,7 +82,7 @@ const McqPage = () => {
         <div className="flex w-full justify-end px-1 sm:px-12 py-4">
           <div className="flex justify-center items-center pr-6">
             <div>
-              <img src={Coin} alt="Coin" />
+              <img src={Coin} alt="Coin"/>
             </div>
             <div className="ml-3 font-bold">
               {score}
@@ -110,6 +109,7 @@ const McqPage = () => {
               gotAns={gotAns} 
               setGotAns={setGotAns} 
               show={[showAns, setShowAns]} 
+              currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option1[1])}
             />
             <Option 
@@ -118,7 +118,8 @@ const McqPage = () => {
               setScore={setScore} 
               gotAns={gotAns} 
               setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+              show={[showAns, setShowAns]}
+              currentQuestionIndex={currentQuestionIndex} 
               onClick={() => handleAnswer(option2[1])}
             />
             <Option 
@@ -128,6 +129,7 @@ const McqPage = () => {
               gotAns={gotAns} 
               setGotAns={setGotAns} 
               show={[showAns, setShowAns]} 
+              currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option3[1])}
             />
             <Option 
@@ -137,11 +139,12 @@ const McqPage = () => {
               gotAns={gotAns} 
               setGotAns={setGotAns} 
               show={[showAns, setShowAns]} 
+              currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option4[1])}
             />
           </div>
           <div className="flex mt-3">
-            <div className="text-white">
+            <div className="text-white" onClick={nextQues}>
                 Next
             </div>
           </div>
