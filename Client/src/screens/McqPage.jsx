@@ -63,7 +63,10 @@ const McqPage = ({ mcqData }) => {
           </div>
         </div>
         <div className="h-[4px] w-[90%] bg-[#D9D9D9]">
-          <div className="h-[4px] bg-[#FFD700] w-[20%]"></div>
+          <div
+            className="h-[4px] bg-[#FFD700]"
+            style={{ width: `${((currentQuestionIndex + 1) / 10) * 100}%` }}
+          ></div>
         </div>
       </div>
       <div className="flex flex-wrap w-full h-[88%]">
