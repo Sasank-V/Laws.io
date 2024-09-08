@@ -95,6 +95,7 @@ function App() {
             <Route path="/LOTD" element={<LOTD setPageNumber={setPageNumber} simplifiedLaw={simplifiedLaw} detailedLaw={detailedLaw} lawName={law} />} />
             {/* MCQ Quiz Page */}
             <Route path="/Quiz" element={<MCQPage mcqData={mcqData} />} />
+            <Route path="/Case" element={<CaseStudy />} />
           </Routes>
         </div>
       </div>
