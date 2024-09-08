@@ -1,13 +1,12 @@
-import { useState } from "react"
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-import StartPage from "./screens/StartPage.jsx";
-import MCQPage from "./screens/McqPage.jsx";
-import LOTD from "./screens/LOTDPage.jsx";
 import SideBar from "./components/SideBar/SideBar.jsx";
 import CaseStudy from "./screens/CaseStudy.jsx";
-
+import { Login } from "./screens/Login.jsx";
+import LOTD from "./screens/LOTDPage.jsx";
+import MCQPage from "./screens/McqPage.jsx";
+import StartPage from "./screens/StartPage.jsx";
 
 function App() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -29,6 +28,8 @@ function App() {
           </Routes>
         </Router>
       </div>
+      <Login></Login>
+
     </div>
   );
 }
