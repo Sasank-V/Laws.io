@@ -6,7 +6,6 @@ import { simplifyLaw,expandLaw,getMCQs} from './GeminiUtils.js';
 
 const app = express();
 dotenv.config();
-
 app.use(cors());
 app.use(express.json());
 
@@ -16,11 +15,17 @@ app.get('/', (req, res) => {
 
 //Get the Law in Brief
 //In the message format
-app.get("/ai/briefLaw",async (req,res)=>{ 
+app.get("/ai/briefLaw",async (req,res)=>{
+  try{
     const law = req.query.law
     const response = await simplifyLaw(law);
+    console.log(response.candidates[0].content.parts);
     const simplifiedLaw = response.candidates[0].content.parts[0].text;
     res.send(simplifiedLaw);
+  } catch(e) {
+    console.log("Error while Fetching the Brief of the Law");
+    res.send(e);
+  }
 })
 
 //Get the indepth explanation of the law
