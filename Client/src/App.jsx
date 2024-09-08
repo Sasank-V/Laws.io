@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import StartPage from "./screens/StartPage.jsx";
 import MCQPage from "./screens/McqPage.jsx";
 import LOTD from "./screens/LOTDPage.jsx";
-
-import SideBar from "./components/SideBar/SideBar.jsx"
+import SideBar from "./components/SideBar/SideBar.jsx";
+import CaseStudy from "./screens/CaseStudy.jsx";
 
 function App() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -50,6 +50,7 @@ function App() {
             <Route path="/LOTD" element={<LOTD setPageNumber={setPageNumber} simplifiedLaw={simplifiedLaw} detailedLaw={detailedLaw} lawName={law} />} />
             {/* MCQ Quiz Page */}
             <Route path="/Quiz" element={<MCQPage />} />
+            <Route path="/Case" element={<CaseStudy />} />
           </Routes>
         </Router>
       </div>
