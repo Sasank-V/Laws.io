@@ -5,6 +5,7 @@ import LeaderIcon from '../../assets/LeaderIcon.png';
 import ExitIcon from '../../assets/Exit.png';
 import SidebarPages from './SidebarPages';
 import { Link } from 'react-router-dom';
+import GoogleTranslate from './GoogleTranslate';
 
 const SidebarDefault = ({
   pageNumber,
@@ -56,6 +57,7 @@ const SidebarDefault = ({
           className={`h-[2px] ${navOpen ? 'w-[85%]' : 'w-[70%]'} bg-white mb-5`}
         ></div>
         <div className="flex-grow"></div>
+        <GoogleTranslate />
         <div className="flex flex-col gap-3">
           <Link to="/leaderboard">
             <div

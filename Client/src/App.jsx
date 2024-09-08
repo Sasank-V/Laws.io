@@ -100,6 +100,7 @@ function App() {
           navOpen={navOpen}
           setNavOpen={setNavOpen}
         />
+
         <div className="flex-1 overflow-x-hidden">
           <Routes>
             {/* Main Start Page */}
