@@ -1,13 +1,12 @@
 @tailwind base;
 @tailwind components;
-/* ::-webkit-scrollbar{
-    width: 5px;
+@tailwind utilities;
+
+
+#root {
+    min-height: 100vh;
 }
-::-webkit-scrollbar-track{
-    margin: 0rem 0rem;
-    background-color: white;
+
+.special p {
+    margin: 1em;
 }
-::-webkit-scrollbar-thumb{
-    background-color: #FFD700;
-} */
-@tailwind utilities

@@ -11,6 +11,7 @@ const McqPage = ({ mcqData }) => {
   const [showAns, setShowAns] = useState(false);
   const [done, setDone] = useState(false);
 
+
   if (mcqData.length === 0)
     return (
       <Loading />
@@ -22,19 +23,18 @@ const McqPage = ({ mcqData }) => {
   // Handle answer selection
   const handleAnswer = (selectedOption) => {
     if (!gotAns) {
-      setGotAns(true);  // User has selected an answer
+      setGotAns(true); // User has selected an answer
 
       if (selectedOption === 'r') {
-        setScore(prev => prev + 20);  // Correct answer
+        setScore((prev) => prev + 20); // Correct answer
       } else {
-        setScore(prev => prev - 10);  // Wrong answer
+        setScore((prev) => prev - 10); // Wrong answer
         setShowAns(true); // Show correct answer
       }
 
       // Move to the next question after a short delay
     }
   };
-
 
   const nextQues = () => {
     console.log(mcqData.length);
@@ -61,6 +61,7 @@ const McqPage = ({ mcqData }) => {
   // Reset states when moving to the next question
 
   return (
+
     <div className="flex flex-col transition-all duration-150 w-full h-full">
       {!done &&
         <div className="w-full h-[70px] md:h-[100px] flex flex-col items-center">
@@ -73,6 +74,7 @@ const McqPage = ({ mcqData }) => {
                 {score}
               </div>
             </div>
+            <div className="ml-3 font-bold">{score}</div>
           </div>
           <div className="h-[4px] w-[90%] bg-[#D9D9D9]">
             <div className="h-[4px] bg-[#FFD700] transition-all duration-500" style={{ width: `${(currentQuestionIndex) * 10}%` }}></div>
@@ -152,6 +154,6 @@ const McqPage = ({ mcqData }) => {
       }
     </div>
   );
-}
+};
 
 export default McqPage;
