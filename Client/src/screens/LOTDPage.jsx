@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router"
 import Background from "../assets/BackgroundLOTD.png"
-
-const LOTD = ({ setShow }) => {
+const LOTD = ({ setShow ,setPageNumber}) => {
+    const navigate = useNavigate();
+    const handleContinue = () => {
+        setShow(true)
+        navigate("/Quiz");
+        setPageNumber(2);
+    }
     return (
         <div className="text-white  rounded-[50px] w-full h-full text-center flex flex-col bg-[#003366]">
             <div className="text-[40px] pt-2 md:text-[70px]">Law of the Day</div>
@@ -13,7 +19,7 @@ const LOTD = ({ setShow }) => {
                 Ipsum beatae perferendis eius soluta labore saepe, dolorem, debitis natus obcaecati tempore reprehenderit aperiam doloremque ratione tempora. Temporibus ipsam quisquam assumenda. Explicabo alias ipsum provident, fugiat placeat corrupti expedita est. Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi tempora nobis aut libero animi consectetur minima quos, eligendi et. Culpa porro aperiam nostrum quibusdam nemo. Omnis assumenda incidunt reprehenderit quidem.</div>
             <div className="w-full absolute items-center px-6 justify-between bottom-4 flex">
                 <div className="text-2xl underline font-semibold cursor-pointer">know more</div>
-                <div className="text-3xl bg-[#FFD700] font-semibold p-4 px-12 rounded-tl-[50px] rounded-br-[40px] cursor-pointer" onClick={() => setShow(true)}>Continue</div>
+                <div className="text-3xl bg-[#FFD700] font-semibold p-4 px-12 rounded-tl-[50px] rounded-br-[40px] cursor-pointer" onClick={handleContinue}>Continue</div>
             </div>
         </div>
     )
