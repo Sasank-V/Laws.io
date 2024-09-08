@@ -1,10 +1,11 @@
-// import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom'
 import { useState } from "react"
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import StartPage from "./screens/StartPage.jsx";
-import McqPage from "./screens/McqPage";
+import MCQPage from "./screens/McqPage.jsx";
 import LOTD from "./screens/LOTDPage.jsx";
-import Navbar from "./components/Navbar.jsx"
+import Navbar from "./components/Sidebar.jsx"
 
 function App() {
   const [show, setShow] = useState(false);
@@ -12,15 +13,25 @@ function App() {
 
   return (
     <div className="absolute w-full h-full">
-      <div className="w-full h-full flex text-[#CCCCCC] font-inria md:overflow-hidden z-2">
-        <Navbar pageNumber={pageNumber} setPageNumber={setPageNumber} />
-        <McqPage show={show} />
-        <div className="absolute top-[10%] left-[10%] w-[85%] h-[80%] items-center transition-all duration-500 z-1"
-          style={{ transform: show === false ? 'scale(1)' : 'scale(0)' }}>
-          <LOTD setShow={setShow} />
-        </div>
+      <div className="w-full h-full flex text-[#CCCCCC] font-inria md:overflow-hidden z-2 flex">
+        <Router>
+          <div className="h-full">
+            <Navbar pageNumber={pageNumber} setPageNumber={setPageNumber} />
+          </div>
+          <div className="flex-grow relative justify-center m-6">
+            <Routes>
+              {/* Main Start Page */}
+              <Route path="/" element={<StartPage setPageNumber={setPageNumber} />} />
+              {/* LOTD Page with transition */}
+              <Route path="/LOTD" element={<LOTD setShow={setShow} setPageNumber={setPageNumber} />}/>
+              {/* MCQ Quiz Page */}
+              <Route path="/Quiz" element={<MCQPage show={show}/>} />
+            </Routes>
+          </div>
+        </Router>
       </div>
     </div>
+    
   );
 }
 

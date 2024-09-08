@@ -5,8 +5,7 @@ import Option from "../components/MCQPage/Option";
 
 const McqPage = ({ show }) => {
     return (
-        <div className="transition-all duration-500"
-            style={{ transform: show === false ? 'scale(0)' : 'scale(1)' }}>
+        <div className="transition-all duration-500">
             <div className="w-full h-[70px] md:h-[100px] flex flex-col items-center">
                 <div className=" flex w-full justify-end px-1 sm:px-12 py-4">
                     <div className="flex justify-center items-center pr-6">
