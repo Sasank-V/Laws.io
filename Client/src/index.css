@@ -10,3 +10,55 @@
 .special p {
     margin: 1em;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+
+#google_translate_element img {
+    display: none !important;
+}
+
+.custom-translate-container {
+    position: relative;
+}
+
+#google_translate_element::before {
+    content: '';
+    background: url('./assets/googleTranslate.png') no-repeat center center;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    display: inline-block;
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.goog-te-gadget-simple {
+    background: #0f152d !important;
+    border: none !important;
+    color: #0f152d !important;
+}
+
+.VIpgJd-ZVi9od-xl07Ob-lTBxed {
+    color: #0f152d !important;
+}
+
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-simple {
+    width: 30px !important;
+    height: 30px !important;
+    overflow: hidden;
+    background: #0f152d;
+}

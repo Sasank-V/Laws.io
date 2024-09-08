@@ -6,7 +6,7 @@ const Left = () => {
   return (
     <>
       <div className="w-[100%] h-[100%] flex justify-center items-center font-inter text-white">
-        <div className="bg-[#4B4B4D] w-[100%] max-h-[400px] rounded-t-[50px] sm:rounded-[50px] sm:w-[70%] sm:max-h-[475px] p-8 overflow-auto">
+        <div className="bg-[#4B4B4D] w-[100%] max-h-[400px] rounded-t-[50px] sm:rounded-[50px] sm:w-[70%] sm:max-h-[475px] p-8 overflow-auto no-scrollbar">
           {data.map((ele, idx) => (
             <div className="flex justify-between border-b-[1px] pb-4 mb-4">
               <div className="flex">
