@@ -19,7 +19,8 @@ function App() {
   const [simplifiedLaw, setSimplifiedLaw] = useState('');
   const [detailedLaw, setDetailedLaw] = useState({});
   const [mcqData, setMcqData] = useState([]);
-  const url = 'http://localhost:3000/ai/getQuiz';
+
+  const url = "http://localhost:3000/ai/getQuiz";
 
   // Fetch MCQs from the API
   const getMCQs = async (law) => {
@@ -47,6 +48,7 @@ function App() {
   };
 
   useEffect(() => {
+    // if (mcqData.length !== 0) return;
     const fetchMCQs = async () => {
       const data = await getMCQs(law);
       if (data) {
@@ -60,24 +62,20 @@ function App() {
 
   useEffect(() => {
     const fetchSimplifiedLawDetails = async () => {
-      const resSimplified = await fetch(
-        `http://localhost:3000/ai/briefLaw?law=${encodeURIComponent(law)}`,
-        {
-          method: 'GET',
-        }
-      );
+      // if (simplifiedLaw !== "") return;
+      const resSimplified = await fetch(`http://localhost:3000/ai/briefLaw?law=${encodeURIComponent(law)}`, {
+        method: "GET",
+      });
 
       const text = await resSimplified.text();
       setSimplifiedLaw(text);
     };
 
     const fetchDetailedLawDetails = async () => {
-      const resSimplified = await fetch(
-        `http://localhost:3000/ai/describeLaw?law=${encodeURIComponent(law)}`,
-        {
-          method: 'GET',
-        }
-      );
+      // if (detailedLaw !== "") return;
+      const resSimplified = await fetch(`http://localhost:3000/ai/describeLaw?law=${encodeURIComponent(law)}`, {
+        method: "GET",
+      });
 
       const text = await resSimplified.json();
       setDetailedLaw(text);

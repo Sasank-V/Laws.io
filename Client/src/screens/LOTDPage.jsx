@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import Markdown from 'react-markdown';
 
+
 import { Link } from 'react-router-dom';
+
+import Loading from "../components/Loading"
 
 const LOTD = ({ setPageNumber, lawName, simplifiedLaw, detailedLaw }) => {
   const [knowMore, setKnowMore] = useState(false);
@@ -75,3 +78,4 @@ const LOTD = ({ setPageNumber, lawName, simplifiedLaw, detailedLaw }) => {
   );
 };
 export default LOTD;
+
