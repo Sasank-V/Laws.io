@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Coin from "../assets/MCQ-Coin.png";
 import Bro from "../assets/MCQ-Bro.png";
 import Option from "../components/MCQPage/Option";
+import Loading from '../components/Loading';
 
 const McqPage = ({ mcqData }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -9,7 +10,10 @@ const McqPage = ({ mcqData }) => {
   const [gotAns, setGotAns] = useState(false);
   const [showAns, setShowAns] = useState(false);
 
-  if (mcqData.length === 0) return <div className='w-full h-full flex justify-center items-center'>Loading...</div>;
+  if (mcqData.length === 0)
+    return (
+      <Loading />
+    );
 
   const mcq = mcqData[currentQuestionIndex];
   const { question, option1, option2, option3, option4 } = mcq;
@@ -28,9 +32,9 @@ const McqPage = ({ mcqData }) => {
 
       // Move to the next question after a short delay
     }
-};
+  };
 
-const nextQues = () => {
+  const nextQues = () => {
     setCurrentQuestionIndex(prev => prev + 1);
     setGotAns(false);
     setShowAns(false);
@@ -45,7 +49,7 @@ const nextQues = () => {
         <div className="flex w-full justify-end px-1 sm:px-12 py-4">
           <div className="flex justify-center items-center pr-6">
             <div>
-              <img src={Coin} alt="Coin"/>
+              <img src={Coin} alt="Coin" />
             </div>
             <div className="ml-3 font-bold">
               {score}
@@ -65,50 +69,50 @@ const nextQues = () => {
             {question}
           </div>
           <div className="h-[75%] w-[85%] flex flex-col text-md md:text-xl font-semibold">
-            <Option 
-              text={option1[0]} 
-              type={option1[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+            <Option
+              text={option1[0]}
+              type={option1[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
+              show={[showAns, setShowAns]}
               currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option1[1])}
             />
-            <Option 
-              text={option2[0]} 
-              type={option2[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
+            <Option
+              text={option2[0]}
+              type={option2[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
               show={[showAns, setShowAns]}
-              currentQuestionIndex={currentQuestionIndex} 
+              currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option2[1])}
             />
-            <Option 
-              text={option3[0]} 
-              type={option3[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+            <Option
+              text={option3[0]}
+              type={option3[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
+              show={[showAns, setShowAns]}
               currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option3[1])}
             />
-            <Option 
-              text={option4[0]} 
-              type={option4[1]} 
-              setScore={setScore} 
-              gotAns={gotAns} 
-              setGotAns={setGotAns} 
-              show={[showAns, setShowAns]} 
+            <Option
+              text={option4[0]}
+              type={option4[1]}
+              setScore={setScore}
+              gotAns={gotAns}
+              setGotAns={setGotAns}
+              show={[showAns, setShowAns]}
               currentQuestionIndex={currentQuestionIndex}
               onClick={() => handleAnswer(option4[1])}
             />
           </div>
           <div className="flex mt-3">
-            <div className="text-white" onClick={nextQues}>
-                Next
+            <div className="cursor-pointer font-semibold bg-yellow-400 px-12 py-3 text-2xl rounded-tl-[30px] rounded-br-[30px] text-[#ffffff]" onClick={nextQues}>
+              Next
             </div>
           </div>
         </div>
