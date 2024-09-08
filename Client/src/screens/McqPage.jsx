@@ -76,7 +76,6 @@ const McqPage = ({ mcqData, setPageNumber }) => {
               </div>
               <div className="ml-3 font-bold">{score}</div>
             </div>
-            <div className="ml-3 font-bold">{score}</div>
           </div>
           <div className="h-[4px] w-[90%] bg-[#D9D9D9]">
             <div
