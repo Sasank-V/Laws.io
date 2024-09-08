@@ -16,6 +16,7 @@ function App() {
   const [simplifiedLaw, setSimplifiedLaw] = useState("");
   const [detailedLaw, setDetailedLaw] = useState({});
   const [mcqData, setMcqData] = useState([]);
+
   const url = "http://localhost:3000/ai/getQuiz";
 
   // Fetch MCQs from the API
@@ -45,6 +46,7 @@ function App() {
   };
 
   useEffect(() => {
+    // if (mcqData.length !== 0) return;
     const fetchMCQs = async () => {
       const data = await getMCQs(law);
       if (data) {
@@ -58,6 +60,7 @@ function App() {
 
   useEffect(() => {
     const fetchSimplifiedLawDetails = async () => {
+      // if (simplifiedLaw !== "") return;
       const resSimplified = await fetch(`http://localhost:3000/ai/briefLaw?law=${encodeURIComponent(law)}`, {
         method: "GET",
       });
@@ -67,6 +70,7 @@ function App() {
     }
 
     const fetchDetailedLawDetails = async () => {
+      // if (detailedLaw !== "") return;
       const resSimplified = await fetch(`http://localhost:3000/ai/describeLaw?law=${encodeURIComponent(law)}`, {
         method: "GET",
       });
@@ -91,7 +95,6 @@ function App() {
             <Route path="/LOTD" element={<LOTD setPageNumber={setPageNumber} simplifiedLaw={simplifiedLaw} detailedLaw={detailedLaw} lawName={law} />} />
             {/* MCQ Quiz Page */}
             <Route path="/Quiz" element={<MCQPage mcqData={mcqData} />} />
-            <Route path="/Case" element={<CaseStudy />} />
           </Routes>
         </div>
       </div>
