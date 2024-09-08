@@ -1,6 +1,6 @@
 import express, { json } from 'express';
 import dotenv from "dotenv";
-import cors from 'cors';
+import cors from "cors";
 
 import { simplifyLaw,expandLaw,getMCQs} from './GeminiUtils.js';
 
@@ -8,6 +8,7 @@ const app = express();
 
 dotenv.config();
 
+app.use(cors());
 app.use(express.json());
 app.use(cors());
 
