@@ -6,26 +6,7 @@ import SidebarPages from "./SidebarPages"
 
 import HamburgerIcon from "../../assets/HamburgerIcon.png"
 
-import React, { useEffect, useRef } from "react";
-
 const SidebarHamburger = ({ pageNumber, setPageNumber, navOpen, show, setShow }) => {
-
-    const sidebarRef = useRef(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-                setShow(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-
-        // Cleanup event listener on component unmount
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [sidebarRef, setShow]);
 
     return (
         <>
@@ -33,7 +14,7 @@ const SidebarHamburger = ({ pageNumber, setPageNumber, navOpen, show, setShow })
                 <img src={HamburgerIcon} alt="" />
             </div >
             <div className={`z-10 ${!show ? "hidden" : "flex"} absolute rounded-2xl border-[1px] border-white flex-col pl-5 w-[160px] top-16 left-[5%] bg-[#003366]`}>
-                <div ref={sidebarRef} className="relative my-5 flex items-center gap-3 cursor-pointer w-full">
+                <div className="relative my-5 flex items-center gap-3 cursor-pointer w-full">
                     <img src={Profile} alt="" className="size-[40px]" />
                     <span className="text-sm">Name</span>
                 </div>

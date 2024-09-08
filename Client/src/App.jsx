@@ -15,21 +15,17 @@ function App() {
 
   return (
     <div className="absolute w-full h-full">
-      <div className="w-full h-full flex text-[#CCCCCC] font-inria md:overflow-hidden z-2 flex">
+      <div className="w-full h-full text-[#CCCCCC] font-inria md:overflow-hidden z-2 flex">
         <Router>
-         <div className="flex w-[100vw] h-[100vh] text-white justify-start">
-            <SideBar pageNumber={pageNumber} setPageNumber={setPageNumber} navOpen={navOpen} setNavOpen={setNavOpen} />
-          </div>
-          <div className="flex-grow relative justify-center m-6">
-            <Routes>
-              {/* Main Start Page */}
-              <Route path="/" element={<StartPage setPageNumber={setPageNumber} />} />
-              {/* LOTD Page with transition */}
-              <Route path="/LOTD" element={<LOTD setShow={setShow} setPageNumber={setPageNumber} />}/>
-              {/* MCQ Quiz Page */}
-              <Route path="/Quiz" element={<MCQPage/>} />
-            </Routes>
-          </div>
+          <SideBar pageNumber={pageNumber} setPageNumber={setPageNumber} navOpen={navOpen} setNavOpen={setNavOpen} />
+          <Routes>
+            {/* Main Start Page */}
+            <Route path="/" element={<StartPage setPageNumber={setPageNumber} />} />
+            {/* LOTD Page with transition */}
+            <Route path="/LOTD" element={<LOTD setPageNumber={setPageNumber} />} />
+            {/* MCQ Quiz Page */}
+            <Route path="/Quiz" element={<MCQPage />} />
+          </Routes>
         </Router>
       </div>
     </div>

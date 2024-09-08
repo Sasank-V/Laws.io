@@ -4,7 +4,7 @@ import InfoIcon from "../../assets/InfoIcon.png"
 import ExitIcon from "../../assets/Exit.png"
 import SidebarPages from "./SidebarPages"
 
-const SidebarDefault = ({ pageNumber, setPageNumber, navOpen, setNavOpen }) => {
+const SidebarDefault = ({ pageNumber, setPageNumber, navOpen, setNavOpen, routeHome }) => {
     return (
         <div className={`${navOpen ? "w-[180px]" : "w-[90px]"} transition-all duration-150 ease-in-out`}>
             <div className={`h-full transition-all duration-150 ease-in-out w-full pl-5 flex flex-col border-2 border-[#FFD700] rounded-r-xl`}>

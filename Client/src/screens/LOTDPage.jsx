@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router"
 import Background from "../assets/BackgroundLOTD.png"
-const LOTD = ({ setShow ,setPageNumber}) => {
+
+const LOTD = ({ setPageNumber }) => {
     const navigate = useNavigate();
     const handleContinue = () => {
-        setShow(true)
         navigate("/Quiz");
         setPageNumber(2);
     }

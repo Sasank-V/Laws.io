@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
 import SidebarDefault from "./SidebarDefault"
-import SidebarPages from "./SidebarPages";
 import SidebarHamburger from "./SidebarHamburger";
 
 const SideBar = ({ pageNumber, setPageNumber, navOpen, setNavOpen }) => {
