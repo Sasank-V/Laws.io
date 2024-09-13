@@ -49,8 +49,8 @@ function App() {
 
   const getCaseStudy = async (law) => {
     try {
-      const briefUrl = `${url}/getCase?law=${encodeURIComponent(law)}`;
-      const response = await fetch(briefUrl, {
+      const caseUrl = `${url}/getCase?law=${encodeURIComponent(law)}`;
+      const response = await fetch(caseUrl, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
