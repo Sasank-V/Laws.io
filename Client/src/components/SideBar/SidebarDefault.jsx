@@ -57,7 +57,12 @@ const SidebarDefault = ({
           className={`h-[2px] ${navOpen ? 'w-[85%]' : 'w-[70%]'} bg-white mb-5`}
         ></div>
         <div className="flex-grow"></div>
+        <div className='flex gap-3 items-center mb-3'>
         <GoogleTranslate />
+        <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
+                Translate
+        </span>
+        </div>
         <div className="flex flex-col gap-3">
           <Link to="/leaderboard">
             <div

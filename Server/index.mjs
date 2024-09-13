@@ -75,6 +75,11 @@ app.get("/ai/getQuiz", async (req,res)=>{
   }
 });
 
+app.getCaseStudy("/ai/getCase",(req,res)=>{
+  const law = req.query.law;
+  
+})
+
 // //Get the narration of the casestudy
 // app.get("/caseStudy",(req,res)=>{
 //   res.send(caseStudy);
