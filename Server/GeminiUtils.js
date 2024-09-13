@@ -89,16 +89,15 @@ const getCaseStudy = async (law) =>{
     Your role is to narrate the victim’s experience in detail. Describe:
     - What happened to the victim.
     - How the victim was affected by the situation.
-    - The steps the victim took in response to the issue.
-    - The victim's feelings, challenges, and perspective on the situation.
-
+    - Roleplay the entire situtation
     Focus only on the victim's side of the story, without introducing courtroom interactions or other characters yet. The story should highlight the legal challenges the victim faced under this law and their response to the situation.
-
     Return the story in this format:
     {
+        "name" : victim's name,
         "backstory": "A brief description of the events leading to the legal situation.",
         "conversations" : [
             {
+                "name" : Character's Name (keep the name more indian), (Use the victims name if he/she is talking)
                 "age" : "Age of the Character",
                 "gender" : "Gender of the character",
                 "role" : "citizen or police or random",
@@ -113,7 +112,6 @@ const getCaseStudy = async (law) =>{
     `
     try {
         const result = await model.generateContent(prompt);
-
         console.log("CaseStudy Sent");
         return result.response; // Returning response
     } catch (e) {
@@ -121,7 +119,7 @@ const getCaseStudy = async (law) =>{
         throw new Error("Failed to generate CaseStudy.");
     }
 }
-module.exports = { simplifyLaw, expandLaw, getMCQs, getCaseStudy};
+module.exports = { simplifyLaw, expandLaw, getMCQs,getCaseStudy};
 
 
 // const getCaseStudy = async () => {

@@ -2,7 +2,7 @@ import express, { json } from 'express';
 import dotenv from "dotenv";
 import cors from "cors";
 
-import { simplifyLaw,expandLaw,getMCQs} from './GeminiUtils.js';
+import { simplifyLaw,expandLaw,getMCQs, getCaseStudy} from './GeminiUtils.js';
 
 const app = express();
 
@@ -75,10 +75,20 @@ app.get("/ai/getQuiz", async (req,res)=>{
   }
 });
 
-app.getCaseStudy("/ai/getCase",(req,res)=>{
+app.get("/ai/getCase", async (req,res)=>{
   const law = req.query.law;
-  
-})
+  try{
+    if(law){
+      const response = await getCaseStudy(law);
+      const resText = response.candidates[0].content.parts[0].text;
+      const data = JSON.parse(resText);
+      res.send(data);
+    }
+  }catch(e){
+    res.status(501).send("Error in fetching MCQ's");
+    console.log("Error in Getting MCQs");
+  }
+});
 
 // //Get the narration of the casestudy
 // app.get("/caseStudy",(req,res)=>{
