@@ -6,22 +6,21 @@ import { Link } from 'react-router-dom';
 
 import Loading from "../components/Loading"
 
-const LOTD = ({ setPageNumber, lawName, simplifiedLaw, detailedLaw }) => {
+const LOTD = ({ setPageNumber, lawName, simplifiedLaw, detailedLaw, shortLoading, detailedLoading }) => {
   const [knowMore, setKnowMore] = useState(false);
 
   return (
     <div className="relative text-white rounded-[50px] w-full h-full text-center">
       <div
-        className={`flex flex-col transition-all duration-150 ${
-          knowMore ? 'blur-md' : ''
-        } w-full h-full`}
+        className={`flex flex-col transition-all duration-150 ${knowMore ? 'blur-md' : ''
+          } w-full h-full`}
       >
         <div className="text-[40px] pt-2 md:text-[70px]">Law of the Day</div>
         <div className="h-[1px] w-[90%] bg-white ml-auto mr-auto"></div>
         <div className="text-[20px] md:text-[30px] mt-10">{lawName}</div>
-        <div className="relative overflow-y-scroll mx-[5%] mt-[5%] text-2xl h-[55%] md:h-[40%]">
+        {shortLoading ? <Loading /> : <div className="relative overflow-y-scroll mx-[5%] mt-[5%] text-2xl h-[55%] md:h-[40%]">
           <Markdown>{simplifiedLaw}</Markdown>
-        </div>
+        </div>}
         <div className="w-full items-center px-6 justify-between bottom-0 flex">
           <div
             className="text-2xl bottom-6 absolute left-15 underline font-semibold cursor-pointer"
@@ -47,25 +46,28 @@ const LOTD = ({ setPageNumber, lawName, simplifiedLaw, detailedLaw }) => {
             {lawName}
           </div>
           <hr />
-          <div className="special text-[15px] md:text-[25px] leading-normal">
-            <Markdown>{detailedLaw.History}</Markdown>
+          {detailedLoading ? <Loading /> : <div>
+            <div className="special text-[15px] md:text-[25px] leading-normal">
+              <Markdown>{detailedLaw.History}</Markdown>
+            </div>
+            <hr />
+            <div className="special text-[15px] md:text-[25px] leading-normal">
+              <Markdown>{detailedLaw.KeyProvision}</Markdown>
+            </div>
+            <hr />
+            <div className="special text-[15px] md:text-[25px] leading-normal">
+              <Markdown>{detailedLaw.PracticalApps}</Markdown>
+            </div>
+            <hr />
+            <div className="special text-[15px] md:text-[25px] leading-normal">
+              <Markdown>{detailedLaw.Penalties}</Markdown>
+            </div>
+            <hr />
+            <div className="special text-[15px] md:text-[25px] leading-normal">
+              <Markdown>{detailedLaw.Summary}</Markdown>
+            </div>
           </div>
-          <hr />
-          <div className="special text-[15px] md:text-[25px] leading-normal">
-            <Markdown>{detailedLaw.KeyProvision}</Markdown>
-          </div>
-          <hr />
-          <div className="special text-[15px] md:text-[25px] leading-normal">
-            <Markdown>{detailedLaw.PracticalApps}</Markdown>
-          </div>
-          <hr />
-          <div className="special text-[15px] md:text-[25px] leading-normal">
-            <Markdown>{detailedLaw.Penalties}</Markdown>
-          </div>
-          <hr />
-          <div className="special text-[15px] md:text-[25px] leading-normal">
-            <Markdown>{detailedLaw.Summary}</Markdown>
-          </div>
+          }
         </div>
         <div
           className="absolute bottom-7 text-2xl font-semibold bg-[#FFD700] px-10 py-2 rounded-tl-[30px] rounded-br-[30px] cursor-pointer text-[#0F152D]"

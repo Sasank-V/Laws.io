@@ -10,7 +10,7 @@ const SidebarHamburger = ({ pageNumber, setPageNumber, navOpen, show, setShow })
 
     return (
         <>
-            <div className="fixed flex items-center justify-center cursor-pointer left-[5%] top-[20px] size-[35px] border-[1px] border-[#FFD700] rounded-md" onClick={() => setShow(!show)}>
+            <div className="fixed z-10 bg-[#003366] flex items-center justify-center cursor-pointer left-[5%] top-[20px] size-[35px] border-[1px] border-[#FFD700] rounded-md" onClick={() => setShow(!show)}>
                 <img src={HamburgerIcon} alt="" />
             </div >
             <div className={`z-10 ${!show ? "hidden" : "flex"} absolute rounded-2xl border-[1px] border-white flex-col pl-5 w-[160px] top-16 left-[5%] bg-[#003366]`}>
