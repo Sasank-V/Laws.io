@@ -3,7 +3,8 @@ import ManYoung from "../assets/ManYoung.png";
 
 import { useState } from "react";
 
-const CaseStudy = () => {
+
+const CaseStudy = ({ csData }) => {
   const [backstory, setBackstory] = useState(true)
 
   return (
@@ -24,9 +25,14 @@ const CaseStudy = () => {
           <img src={ManOld} alt="" className="" />
         </div>
         <div className="h-full w-[50%] bottom-1 items-center flex pr-[100px]">
-          <div className="bg-white text-black py-5 px-10 rounded-3xl rounded-bl-none mb-10">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro quis asperiores
+          <div className="bg-white text-black py-5 px-10 rounded-3xl rounded-bl-none">
+            <div className="overflow-y-scroll max-h-[150px] mb-1">
+              {csData.name}
+            </div>
           </div>
+        </div>
+        <div className="absolute w-[150px] h-[50px] bg-yellow-400 bottom-5 right-5 cursor-pointer justify-center font-semibold text-xl text-black flex items-center rounded-tl-3xl rounded-br-3xl">
+          Next
         </div>
       </div>
     </div >
