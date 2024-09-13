@@ -4,7 +4,6 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import SideBar from './components/SideBar/SideBar.jsx';
 import CaseStudy from './screens/CaseStudy.jsx';
 import Leaderboard from './screens/Leaderboard.jsx';
-import Login from "./screens/Login.jsx";
 import LOTD from './screens/LOTDPage.jsx';
 import MCQPage from './screens/McqPage.jsx';
 import StartPage from './screens/StartPage.jsx';
@@ -18,7 +17,8 @@ function App() {
   const [simplifiedLaw, setSimplifiedLaw] = useState('');
   const [detailedLaw, setDetailedLaw] = useState({});
   const [mcqData, setMcqData] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [shortLoading, setShortLoading] = useState(true);
+  const [detailedLoading, setDetailedLoading] = useState(true);
 
   const url = 'http://localhost:3000/ai';
 
@@ -102,6 +102,7 @@ function App() {
 
       const text = await resSimplified.text();
       setSimplifiedLaw(text);
+      setShortLoading(false);
     };
 
     const fetchDetailedLawDetails = async () => {
@@ -114,60 +115,55 @@ function App() {
       );  
       const text = await resSimplified.json();
       setDetailedLaw(text);
+      setDetailedLoading(false);
     };
 
     fetchSimplifiedLawDetails();
     fetchDetailedLawDetails();
   }, [law]);
 
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-  };
-
   return (
     <Router>
-      {isAuthenticated ? (
-        <div className="w-full h-full min-h-screen flex text-[#CCCCCC] font-inria overflow-x-hidden">
-          <SideBar
-            pageNumber={pageNumber}
-            setPageNumber={setPageNumber}
-            navOpen={navOpen}
-            setNavOpen={setNavOpen}
-          />
-          <div className="flex-1 overflow-x-hidden">
-            <Routes>
-              {/* Main Start Page */}
-              <Route
-                path="/"
-                element={<StartPage setPageNumber={setPageNumber} />}
-              />
-              {/* LOTD Page with transition */}
-              <Route
-                path="/LOTD"
-                element={
-                  <LOTD
-                    setPageNumber={setPageNumber}
-                    simplifiedLaw={simplifiedLaw}
-                    detailedLaw={detailedLaw}
-                    lawName={law}
-                  />
-                }
-              />
-              {/* MCQ Quiz Page */}
-              <Route
-                path="/Quiz"
-                element={
-                  <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
-                }
-              />
-              <Route path="/Case" element={<CaseStudy />} />
-              <Route path="/Leaderboard" element={<Leaderboard />} />
-            </Routes>
-          </div>
+      <div className="w-full h-full min-h-screen flex text-[#CCCCCC] font-inria overflow-x-hidden">
+        <SideBar
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          navOpen={navOpen}
+          setNavOpen={setNavOpen}
+        />
+        <div className="flex-1 overflow-x-hidden">
+          <Routes>
+            {/* Main Start Page */}
+            <Route
+              path="/"
+              element={<StartPage setPageNumber={setPageNumber} />}
+            />
+            {/* LOTD Page with transition */}
+            <Route
+              path="/LOTD"
+              element={
+                <LOTD
+                  setPageNumber={setPageNumber}
+                  simplifiedLaw={simplifiedLaw}
+                  detailedLaw={detailedLaw}
+                  lawName={law}
+                  shortLoading={shortLoading}
+                  detailedLoading={detailedLoading}
+                />
+              }
+            />
+            {/* MCQ Quiz Page */}
+            <Route
+              path="/Quiz"
+              element={
+                <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
+              }
+            />
+            <Route path="/Case" element={<CaseStudy />} />
+            <Route path="/Leaderboard" element={<Leaderboard />} />
+          </Routes>
         </div>
-      ) : (
-        <Login onLoginSuccess={handleLoginSuccess} />
-      )}
+      </div>
     </Router>
   );
 }

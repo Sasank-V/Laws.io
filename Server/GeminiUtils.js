@@ -86,29 +86,21 @@ const getMCQs = async (law) => {
 
 const getCaseStudy = async (law) =>{
     const prompt = `Act as a legal expert and create a case study based on the following law: ${law}.
-    Your role is to narrate the victim’s experience in detail. Describe:
+   Your role is to narrate the victim’s experience in detail. Describe:
     - What happened to the victim.
     - How the victim was affected by the situation.
-    - Roleplay the entire situtation
+    - The steps the victim took in response to the issue.
+    - The victim's feelings, challenges, and perspective on the situation.
     Focus only on the victim's side of the story, without introducing courtroom interactions or other characters yet. The story should highlight the legal challenges the victim faced under this law and their response to the situation.
     Return the story in this format:
     {
         "name" : victim's name,
+        "age" : Age of the Victim
+        "gender":Gender of the victim
         "backstory": "A brief description of the events leading to the legal situation.",
-        "conversations" : [
-            {
-                "name" : Character's Name (keep the name more indian), (Use the victims name if he/she is talking)
-                "age" : "Age of the Character",
-                "gender" : "Gender of the character",
-                "role" : "citizen or police or random",
-                "message" : "What they have to say"
-            },
-            {
-            Same as previous 
-            }]
-        }
+        "conversations" : ["Message1(What the victim has to say" ,"Message2",...so on],
     }
-        I don't need any extra message before or after this json response . I need at maximum of 14 conversations.
+        I don't need any extra message before or after this json response . I need at maximum of 10 conversations.
     `
     try {
         const result = await model.generateContent(prompt);
@@ -119,39 +111,37 @@ const getCaseStudy = async (law) =>{
         throw new Error("Failed to generate CaseStudy.");
     }
 }
-module.exports = { simplifyLaw, expandLaw, getMCQs,getCaseStudy};
 
+const setCourtRoom = async (law,context,role) => {
+    let prompt = `I will say you a context of a casestudy related to the law : ${law}. Context : ${context}.`;
+    if(rol === "for"){
+        prompt = prompt + "Argue for the victim and prove her innocence."
+    }else{
+        prompt = prompt + "Argue against the victim and prove her guilty."
+    }
+    prompt = prompt + "Give me utmost a 3 lines response . Not more than three lines but can be less than three lines. I will send you what the other lawyer has to say one by one, After this message.Make sure that you come to conclusion to after 15 pairs of conversation.When I send 'END', Give me a response like 'User' if the messages i am sending you are valid , or 'AI' if your arguments were valid but not the users";
+    const chat = model.startChat({
+        history: [
+          {
+            role: "user",
+            parts: [{ text:  prompt}],
+          },
+          {
+            role: "model",
+            parts: [{ text: "Ok.Start the conversation."}],
+          },
+        ],
+      });
+      let result = await chat.sendMessage("The victim is innocent");
+      console.log();
+    return chat;
+}
 
-// const getCaseStudy = async () => {
-//     const prompt = `You are an AI legal assistant responsible for generating case studies with conversations between various characters involved in a legal scenario. The request will include a specific caseID, and your task is to generate a conversation based on that case. The conversation should follow the storyline or structure of the case study, ensuring that the dialogue progresses naturally according to the sequence of events.
+let law = 'Law: Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)';
+let context = ""
+let rol = "for";
+setCourtRoom()
 
-// The response should be a JSON object containing a conversation in the following format:
-// {
-//   "person1": "some text",
-//   "person2": "some text",
-//   ...
-// }
-
-// Characters available for the conversation are:
-// - Judge
-// - FriendlyLawyer
-// - OppositionLawyer
-// - Man
-// - Woman
-// - OldMan
-// - OldWoman
-// - ChildBoy
-// - ChildGirl
-// - Generic
-
-// **Guidelines:**
-// 1. The conversation must follow the flow of the case storyline, starting with introductions, initial claims, and moving toward key arguments, counterarguments, and concluding remarks.
-// 2. Use only the provided characters to structure the conversation. Assign realistic dialogue to each character, keeping their role and personality in mind.
-// 3. Ensure the conversation builds naturally, with the conflict or issue being clearly discussed by the characters as the story unfolds.
-// 4. The dialogue should alternate between characters, ensuring that the conversation stays engaging and relevant to the case events.
-// 5. The language should be simple, clear, and accessible for common citizens, with minimal legal jargon.
-// 6. Make sure the conversation ends with a resolution or important conclusion.
-// `
-// }
+module.exports = { simplifyLaw, expandLaw, getMCQs,getCaseStudy,setCourtRoom};
 
 
