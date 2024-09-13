@@ -75,7 +75,7 @@ app.get("/ai/getQuiz", async (req,res)=>{
   }
 });
 
-app.getCaseStudy("/ai/getCase",(req,res)=>{
+app.get("/ai/getCase",(req,res)=>{
   const law = req.query.law;
   
 })
