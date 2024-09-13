@@ -20,12 +20,36 @@ function App() {
   const [mcqData, setMcqData] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const url = 'http://localhost:3000/ai/getQuiz';
+  const url = 'http://localhost:3000/ai';
 
   // Fetch MCQs from the API
   const getMCQs = async (law) => {
     try {
-      const briefUrl = `${url}?law=${encodeURIComponent(law)}`;
+      const briefUrl = `${url}/getQuiz?law=${encodeURIComponent(law)}`;
+      const response = await fetch(briefUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      if (response.status == 200) {
+        const data = await response.json();
+        return data;
+      } else {
+        return '';
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const getCaseStudy = async (law) => {
+    try {
+      const briefUrl = `${url}/getCase?law=${encodeURIComponent(law)}`;
       const response = await fetch(briefUrl, {
         method: 'GET',
         headers: {
@@ -56,7 +80,13 @@ function App() {
         setMcqData(mcqs);
       }
     };
-
+    const fetchCase = async () => {
+      const data = await getCaseStudy(law);
+      if (data) {
+        console.dir(data);   
+      }
+    };
+    fetchCase();
     fetchMCQs();
   }, [law]);
 
@@ -64,7 +94,7 @@ function App() {
     const fetchSimplifiedLawDetails = async () => {
       // if (simplifiedLaw !== "") return;
       const resSimplified = await fetch(
-        `http://localhost:3000/ai/briefLaw?law=${encodeURIComponent(law)}`,
+        `${url}/briefLaw?law=${encodeURIComponent(law)}`,
         {
           method: 'GET',
         }
@@ -77,12 +107,11 @@ function App() {
     const fetchDetailedLawDetails = async () => {
       // if (detailedLaw !== "") return;
       const resSimplified = await fetch(
-        `http://localhost:3000/ai/describeLaw?law=${encodeURIComponent(law)}`,
+        `${url}/describeLaw?law=${encodeURIComponent(law)}`,
         {
           method: 'GET',
         }
-      );
-
+      );  
       const text = await resSimplified.json();
       setDetailedLaw(text);
     };
