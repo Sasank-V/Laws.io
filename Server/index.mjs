@@ -1,8 +1,9 @@
 import express, { json } from 'express';
 import dotenv from "dotenv";
 import cors from "cors";
+import session from "express-session";
 
-import { simplifyLaw,expandLaw,getMCQs, getCaseStudy} from './GeminiUtils.js';
+import { simplifyLaw,expandLaw,getMCQs, getCaseStudy, setCourtRoom} from './GeminiUtils.js';
 
 const app = express();
 
@@ -10,6 +11,14 @@ dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({extended : true}));
+app.use(session({
+  secret: process.env.SECRET_KEY,  // Replace with your own secret
+  resave: false,              // Prevents resaving unchanged sessions
+  saveUninitialized: true,    // Forces a session to be saved, even if unmodified
+  cookie: { secure: false }   // Set to true if using HTTPS, false if using HTTP
+}));
+
 
 app.get('/', (req, res) => {
   res.send("Hello , I am Groot!");
@@ -89,6 +98,17 @@ app.get("/ai/getCase", async (req,res)=>{
     console.log("Error in Getting MCQs");
   }
 });
+
+app.post("/ai/setCourt",async (req,res)=>{
+  let {law,context} = req.body;
+  const chat = await setCourtRoom(law,context);
+  req.session.chat = chat;
+  res.redirect("/ai/simulateCourt");
+});
+
+app.get("/ai/simulateCourt",(req,res)=>{
+
+})
 
 // //Get the narration of the casestudy
 // app.get("/caseStudy",(req,res)=>{
