@@ -16,6 +16,7 @@ function App() {
   );
   const [simplifiedLaw, setSimplifiedLaw] = useState('');
   const [detailedLaw, setDetailedLaw] = useState({});
+  const [caseStudyData, setCaseStudyData] = useState({});
   const [mcqData, setMcqData] = useState([]);
   const [shortLoading, setShortLoading] = useState(true);
   const [detailedLoading, setDetailedLoading] = useState(true);
@@ -72,7 +73,6 @@ function App() {
   };
 
   useEffect(() => {
-    // if (mcqData.length !== 0) return;
     const fetchMCQs = async () => {
       const data = await getMCQs(law);
       if (data) {
@@ -83,14 +83,10 @@ function App() {
     const fetchCase = async () => {
       const data = await getCaseStudy(law);
       if (data) {
-        console.dir(data);   
+        setCaseStudyData(csData);
       }
     };
-    fetchCase();
-    fetchMCQs();
-  }, [law]);
 
-  useEffect(() => {
     const fetchSimplifiedLawDetails = async () => {
       // if (simplifiedLaw !== "") return;
       const resSimplified = await fetch(
@@ -112,10 +108,12 @@ function App() {
         {
           method: 'GET',
         }
-      );  
+      );
       const text = await resSimplified.json();
       setDetailedLaw(text);
       setDetailedLoading(false);
+      fetchMCQs();
+      fetchCase();
     };
 
     fetchSimplifiedLawDetails();
@@ -159,7 +157,7 @@ function App() {
                 <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
               }
             />
-            <Route path="/Case" element={<CaseStudy />} />
+            <Route path="/Case" element={<CaseStudy csData={caseStudyData ? caseStudyData : {}} />} />
             <Route path="/Leaderboard" element={<Leaderboard />} />
           </Routes>
         </div>

@@ -100,7 +100,6 @@ const getCaseStudy = async (law) =>{
                 "name" : Character's Name (keep the name more indian), (Use the victims name if he/she is talking)
                 "age" : "Age of the Character",
                 "gender" : "Gender of the character",
-                "role" : "citizen or police or random",
                 "message" : "What they have to say"
             },
             {
