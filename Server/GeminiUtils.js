@@ -84,7 +84,44 @@ const getMCQs = async (law) => {
     }
 };
 
-module.exports = { simplifyLaw, expandLaw, getMCQs };
+const getCaseStudy = async (law) =>{
+    const prompt = `Act as a legal expert and create a case study based on the following law: ${law}.
+    Your role is to narrate the victim’s experience in detail. Describe:
+    - What happened to the victim.
+    - How the victim was affected by the situation.
+    - The steps the victim took in response to the issue.
+    - The victim's feelings, challenges, and perspective on the situation.
+
+    Focus only on the victim's side of the story, without introducing courtroom interactions or other characters yet. The story should highlight the legal challenges the victim faced under this law and their response to the situation.
+
+    Return the story in this format:
+    {
+        "backstory": "A brief description of the events leading to the legal situation.",
+        "conversations" : [
+            {
+                "age" : "Age of the Character",
+                "gender" : "Gender of the character",
+                "role" : "citizen or police or random",
+                "message" : "What they have to say"
+            },
+            {
+            Same as previous 
+            }]
+        }
+    }
+        I don't need any extra message before or after this json response . I need at maximum of 14 conversations.
+    `
+    try {
+        const result = await model.generateContent(prompt);
+
+        console.log("CaseStudy Sent");
+        return result.response; // Returning response
+    } catch (e) {
+        console.error("Gemini API Error in CaseStudy Generation:", e);
+        throw new Error("Failed to generate CaseStudy.");
+    }
+}
+module.exports = { simplifyLaw, expandLaw, getMCQs, getCaseStudy};
 
 
 // const getCaseStudy = async () => {
