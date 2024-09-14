@@ -107,7 +107,7 @@ app.post("/ai/setCourt",async (req,res)=>{
 });
 
 app.get("/ai/simulateCourt",(req,res)=>{
-
+  let chat = req.session.chat;
 })
 
 // //Get the narration of the casestudy

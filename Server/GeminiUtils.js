@@ -99,6 +99,13 @@ const getCaseStudy = async (law) =>{
         "gender":Gender of the victim
         "backstory": "A brief description of the events leading to the legal situation.",
         "conversations" : ["Message1(What the victim has to say" ,"Message2",...so on],
+        "Micromcqs" : [{
+            "question" : Question ( like what would the you do in this kind of situation),
+            "option1" : [context of  Option 1,color],("r" - for correct answer,"w"-for wrong answer) 
+            "option2" : [context of  Option 2,color],  
+            "option3" : [context of  Option 3,color],
+            "option4" : [context of  Option 4,color],
+        },{ question2 } and so on...] (I need a micro mcq question for every three conversations)
     }
         I don't need any extra message before or after this json response . I need at maximum of 10 conversations.
     `
@@ -133,15 +140,15 @@ const setCourtRoom = async (law,context,role) => {
         ],
       });
       let result = await chat.sendMessage("The victim is innocent");
-      console.log();
+      console.dir(result.response.candidates[0].content.parts[0].text);
     return chat;
 }
 
 let law = 'Law: Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)';
-let context = ""
-let rol = "for";
-setCourtRoom()
+let context = "Alice Johnson, a 29-year-old graphic designer, was involved in a car accident caused by a faulty brake system in her vehicle. Despite reporting the issue to the dealership, the problem was not addressed. The faulty brakes led to a collision that caused Alice significant injuries and damages to her vehicle. Alice Johnson: 'I was driving home from work when the brakes failed. I tried to stop, but the car just kept moving and crashed into another vehicle.Alice Johnson: 'I reported the brake issue to the dealership before the accident, but they said it was fine and didn’t fix it.Alice Johnson: 'After the accident, I was taken to the hospital with several injuries. I had to undergo surgery and extensive physical therapy.Alice Johnson: 'I contacted the dealership again, but they refused to accept responsibility for the faulty brakes.Alice Johnson: 'I’m struggling with medical bills and car repairs, and I’m worried about how I will manage financially.Alice Johnson: 'I decided to file a complaint with a consumer protection agency, hoping they would investigate the dealership’s practices.Alice Johnson: 'The consumer protection agency confirmed that the dealership had a history of complaints about brake issues.Alice Johnson: 'I’m currently preparing to file a lawsuit against the dealership for negligence and seeking compensation for my damages.Alice Johnson: 'I feel frustrated and betrayed by the dealership. I trusted them to ensure my vehicle was safe.Alice Johnson: 'I hope to get justice and prevent others from going through a similar situation. I want the dealership to be held accountable.'"
+let rol = "against";
+// let chat = setCourtRoom(law,context,rol);
 
-module.exports = { simplifyLaw, expandLaw, getMCQs,getCaseStudy,setCourtRoom};
+module.exports = { simplifyLaw, expandLaw , getMCQs , getCaseStudy , setCourtRoom };
 
 
