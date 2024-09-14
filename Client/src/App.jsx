@@ -83,7 +83,7 @@ function App() {
     const fetchCase = async () => {
       const data = await getCaseStudy(law);
       if (data) {
-        setCaseStudyData(csData);
+        setCaseStudyData(data);
       }
     };
 
