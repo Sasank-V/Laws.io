@@ -91,13 +91,13 @@ const getCaseStudy = async (law) =>{
     - How the victim was affected by the situation.
     - The steps the victim took in response to the issue.
     - The victim's feelings, challenges, and perspective on the situation.
-    Focus only on the victim's side of the story, without introducing courtroom interactions or other characters yet. The story should highlight the legal challenges the victim faced under this law and their response to the situation.
+    Focus only on the victim's side of the story, without introducing courtroom interactions or other characters yet. The story should highlight the legal challenges the victim faced under this law and their response to the situation.The story should be contradictory , sometimes the victim must have made some wrong choices which goes against the law.
     Return the story in this format:
     {
         "name" : victim's name,
         "age" : Age of the Victim
         "gender":Gender of the victim
-        "backstory": "A brief description of the events leading to the legal situation.",
+        "backstory": "A brief description of the events leading to the legal situation.It should be exact 5 lines",
         "conversations" : ["Message1(What the victim has to say" ,"Message2",...so on],
         "Micromcqs" : [{
             "question" : Question ( like what would the you do in this kind of situation),
@@ -144,10 +144,7 @@ const setCourtRoom = async (law,context,role) => {
     return chat;
 }
 
-let law = 'Law: Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)';
-let context = "Alice Johnson, a 29-year-old graphic designer, was involved in a car accident caused by a faulty brake system in her vehicle. Despite reporting the issue to the dealership, the problem was not addressed. The faulty brakes led to a collision that caused Alice significant injuries and damages to her vehicle. Alice Johnson: 'I was driving home from work when the brakes failed. I tried to stop, but the car just kept moving and crashed into another vehicle.Alice Johnson: 'I reported the brake issue to the dealership before the accident, but they said it was fine and didn’t fix it.Alice Johnson: 'After the accident, I was taken to the hospital with several injuries. I had to undergo surgery and extensive physical therapy.Alice Johnson: 'I contacted the dealership again, but they refused to accept responsibility for the faulty brakes.Alice Johnson: 'I’m struggling with medical bills and car repairs, and I’m worried about how I will manage financially.Alice Johnson: 'I decided to file a complaint with a consumer protection agency, hoping they would investigate the dealership’s practices.Alice Johnson: 'The consumer protection agency confirmed that the dealership had a history of complaints about brake issues.Alice Johnson: 'I’m currently preparing to file a lawsuit against the dealership for negligence and seeking compensation for my damages.Alice Johnson: 'I feel frustrated and betrayed by the dealership. I trusted them to ensure my vehicle was safe.Alice Johnson: 'I hope to get justice and prevent others from going through a similar situation. I want the dealership to be held accountable.'"
-let rol = "against";
-// let chat = setCourtRoom(law,context,rol);
+
 
 module.exports = { simplifyLaw, expandLaw , getMCQs , getCaseStudy , setCourtRoom };
 

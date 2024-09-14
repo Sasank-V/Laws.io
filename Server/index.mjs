@@ -31,7 +31,6 @@ app.get("/ai/briefLaw",async (req,res)=>{
     const law = req.query.law
     const response = await simplifyLaw(law);
     let simplifiedLaw = response.candidates[0]?.content?.parts[0]?.text;
-    console.log(simplifiedLaw)
     res.send(simplifiedLaw);
   } catch(e) {
     console.log("Error while Fetching the Brief of the Law");
