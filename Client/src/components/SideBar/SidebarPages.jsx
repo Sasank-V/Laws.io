@@ -2,7 +2,6 @@ import HomeIcon from '../../assets/HomeIcon.png';
 import FileIcon from '../../assets/FileIcon.png';
 import FourCircles from '../../assets/FourCircles.png';
 import Hat from '../../assets/Hat.png';
-import GameController from '../../assets/GameController.png';
 
 import { Link } from 'react-router-dom';
 
@@ -17,9 +16,8 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
         <img
           src={HomeIcon}
           alt=""
-          className={`${
-            pageNumber == 0 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 0 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
           Home
@@ -33,9 +31,8 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
         <img
           src={FileIcon}
           alt=""
-          className={`${
-            pageNumber == 1 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 1 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
           Read Up
@@ -49,9 +46,8 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
         <img
           src={FourCircles}
           alt=""
-          className={`${
-            pageNumber == 2 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 2 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
           MCQ's
@@ -59,34 +55,17 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
       </Link>
       <Link
         to="/Case"
-        className={`size-[35px] flex items-center gap-2 cursor-pointer w-full`}
+        className={`size-[35px] flex items-center gap-2 mb-5 cursor-pointer w-full`}
         onClick={() => setPageNumber(3)}
       >
         <img
           src={Hat}
           alt=""
-          className={`${
-            pageNumber == 3 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 3 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
           Case Study
-        </span>
-      </Link>
-      <Link
-        to="/"
-        className={`size-[35px] flex items-center gap-2 cursor-pointer mb-5 w-full`}
-        onClick={() => setPageNumber(4)}
-      >
-        <img
-          src={GameController}
-          alt=""
-          className={`${
-            pageNumber == 4 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
-        />
-        <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
-          Simulate
         </span>
       </Link>
     </div>
@@ -100,9 +79,8 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
         <img
           src={HomeIcon}
           alt=""
-          className={`${
-            pageNumber == 0 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 0 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className="text-sm">Home</span>
       </Link>
@@ -114,9 +92,8 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
         <img
           src={FileIcon}
           alt=""
-          className={`${
-            pageNumber == 1 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 1 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className="text-sm">Read Up</span>
       </Link>
@@ -128,39 +105,23 @@ const SidebarPages = ({ navOpen, pageNumber, setPageNumber, isHamburg }) => {
         <img
           src={FourCircles}
           alt=""
-          className={`${
-            pageNumber == 2 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 2 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className="text-sm">MCQ's</span>
       </Link>
       <Link
-        to="/"
+        to="/Case"
         className="size-[35px] flex items-center gap-2 cursor-pointer w-full"
         onClick={() => setPageNumber(3)}
       >
         <img
           src={Hat}
           alt=""
-          className={`${
-            pageNumber == 3 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
+          className={`${pageNumber == 3 ? 'invert bg-black rounded-lg' : 'invert-0'
+            } size-[35px]`}
         />
         <span className="text-sm">Case Study</span>
-      </Link>
-      <Link
-        to="/"
-        className="size-[35px] flex items-center gap-2 cursor-pointer w-full mb-4"
-        onClick={() => setPageNumber(4)}
-      >
-        <img
-          src={GameController}
-          alt=""
-          className={`${
-            pageNumber == 4 ? 'invert bg-black rounded-lg' : 'invert-0'
-          } size-[35px]`}
-        />
-        <span className="text-sm">Simulate</span>
       </Link>
     </div>
   );

@@ -16,9 +16,8 @@ const SidebarDefault = ({
 }) => {
   return (
     <div
-      className={`${
-        navOpen ? 'w-[180px]' : 'w-[90px]'
-      } transition-all duration-150 ease-in-out`}
+      className={`${navOpen ? 'w-[180px]' : 'w-[90px]'
+        } transition-all duration-150 ease-in-out`}
     >
       <div
         className={`h-full transition-all duration-150 ease-in-out w-full pl-5 flex flex-col border-2 border-[#FFD700] rounded-r-xl`}
@@ -58,10 +57,10 @@ const SidebarDefault = ({
         ></div>
         <div className="flex-grow"></div>
         <div className='flex gap-3 items-center mb-3'>
-        <GoogleTranslate />
-        <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
-                Translate
-        </span>
+          <GoogleTranslate />
+          <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
+            Translate
+          </span>
         </div>
         <div className="flex flex-col gap-3">
           <Link to="/leaderboard">
@@ -72,9 +71,8 @@ const SidebarDefault = ({
               <img
                 src={LeaderIcon}
                 alt=""
-                className={`${
-                  pageNumber == 5 ? 'invert bg-black rounded-lg' : 'invert-0'
-                } size-[35px]`}
+                className={`${pageNumber == 5 ? 'invert bg-black rounded-lg' : 'invert-0'
+                  } size-[35px]`}
               />
               <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
                 Leaderboard
@@ -88,9 +86,8 @@ const SidebarDefault = ({
             <img
               src={InfoIcon}
               alt=""
-              className={`${
-                pageNumber == 6 ? 'invert bg-black rounded-lg' : 'invert-0'
-              } size-[35px]`}
+              className={`${pageNumber == 6 ? 'invert bg-black rounded-lg' : 'invert-0'
+                } size-[35px]`}
             />
             <span className={`${navOpen ? 'visible' : 'hidden'} text-sm`}>
               Help
@@ -103,9 +100,8 @@ const SidebarDefault = ({
           >
             <img src={ExitIcon} alt="" className="size-[35px]" />
             <span
-              className={`${
-                navOpen ? 'visible' : 'hidden'
-              } text-[#D33543] text-sm`}
+              className={`${navOpen ? 'visible' : 'hidden'
+                } text-[#D33543] text-sm`}
             >
               Logout
             </span>

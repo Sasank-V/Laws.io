@@ -1,4 +1,6 @@
 import BgCourt from "../assets/BackgroundCourt.jpeg"
+import MaleLawyer from "../assets/MaleLawyer.png"
+import LadyLawyer from "../assets/LadyLawyer.png"
 import { useEffect, useState } from "react"
 
 const Simulate = () => {
@@ -14,23 +16,18 @@ const Simulate = () => {
     const submitMessage = () => {
         const msg = message;
 
-        setChats([...chats, message]);
+        setChats([...chats, msg]);
+        setMessage("");
     }
 
     return (
-        <div className="w-full h-full flex flex-col justify-center">
-            {/* <img src={BgCourt} alt="" /> */}
+        <div className="absolute w-full h-full flex flex-col justify-start">
             <div>
-                {
-                    chats.map((chat, key) => {
-                        <div key={key} className="w-[100px] h-[100px] bg-white">
-                            {chat}
-                        </div>
-                    })
-                }
+                <img src={BgCourt} alt="" className="flex" />
+                <div className="relative flex w-full flex-grow bg-white">
+
+                </div>
             </div>
-            <input type="text" name="" id="" onChange={(e) => setMessage(e.target.value)} />
-            <div onClick={() => submitMessage()}>submit</div>
         </div>
     )
 }

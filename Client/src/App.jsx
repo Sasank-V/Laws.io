@@ -161,7 +161,7 @@ function App() {
                 <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
               }
             />
-            <Route path="/Case" element={<CaseStudy csData={caseStudyData ? caseStudyData : {}} />} />
+            <Route path="/Case" element={<CaseStudy csData={caseStudyData} gotCase={gotCase} />} />
             <Route path="/Simulate" element={<Simulate />} />
             <Route path="/Leaderboard" element={<Leaderboard />} />
           </Routes>
