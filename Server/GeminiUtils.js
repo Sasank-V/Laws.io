@@ -1,5 +1,8 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { response } = require("express");
+const { stringify } = require("querystring");
 require("dotenv").config();
+const readline = require('readline')
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -121,30 +124,40 @@ const getCaseStudy = async (law) =>{
 
 const setCourtRoom = async (law,context,role) => {
     let prompt = `I will say you a context of a casestudy related to the law : ${law}. Context : ${context}.`;
-    if(rol === "for"){
-        prompt = prompt + "Argue for the victim and prove her innocence."
-    }else{
-        prompt = prompt + "Argue against the victim and prove her guilty."
+    
+    if (role === "for") {
+        prompt += " You are a lawyer fighting for the victim. Your role is to prove the victims innocence and argue against the lawyer of the accused";
+    } else {
+        prompt += " You are a lawyer fighting for the accused. Your role is to prove the victim guilty and argue against the victims lawyer";
     }
-    prompt = prompt + "Give me utmost a 3 lines response . Not more than three lines but can be less than three lines. I will send you what the other lawyer has to say one by one, After this message.Make sure that you come to conclusion to after 15 pairs of conversation.When I send 'END', Give me a response like 'User' if the messages i am sending you are valid , or 'AI' if your arguments were valid but not the users";
+
+    prompt += " Your responses must be strictly less than 100 words. your responses must be like a conversation";
+
+
     const chat = model.startChat({
         history: [
-          {
+            {
             role: "user",
             parts: [{ text:  prompt}],
-          },
-          {
+            },
+            {
             role: "model",
-            parts: [{ text: "Ok.Start the conversation."}],
-          },
+            parts: [{ text: "Alrighty"}],
+            },
         ],
-      });
-      let result = await chat.sendMessage("The victim is innocent");
-      console.dir(result.response.candidates[0].content.parts[0].text);
+    });
+    
+    // let response = await chat.sendMessage("The victim is not innocent");
+    // console.log(response.response.candidates[0].content.parts[0].text);
+
+
     return chat;
+    
 }
 
-
+let law = 'Law: Self-Defense (Section 96 to 106 of the Indian Penal Code, 1860)';
+let context = "Alice Johnson, a 29-year-old graphic designer, was involved in a car accident caused by a faulty brake system in her vehicle. Despite reporting the issue to the dealership, the problem was not addressed. The faulty brakes led to a collision that caused Alice significant injuries and damages to her vehicle. Alice Johnson: 'I was driving home from work when the brakes failed. I tried to stop, but the car just kept moving and crashed into another vehicle.Alice Johnson: 'I reported the brake issue to the dealership before the accident, but they said it was fine and didn’t fix it.Alice Johnson: 'After the accident, I was taken to the hospital with several injuries. I had to undergo surgery and extensive physical therapy.Alice Johnson: 'I contacted the dealership again, but they refused to accept responsibility for the faulty brakes.Alice Johnson: 'I’m struggling with medical bills and car repairs, and I’m worried about how I will manage financially.Alice Johnson: 'I decided to file a complaint with a consumer protection agency, hoping they would investigate the dealership’s practices.Alice Johnson: 'The consumer protection agency confirmed that the dealership had a history of complaints about brake issues.Alice Johnson: 'I’m currently preparing to file a lawsuit against the dealership for negligence and seeking compensation for my damages.Alice Johnson: 'I feel frustrated and betrayed by the dealership. I trusted them to ensure my vehicle was safe.Alice Johnson: 'I hope to get justice and prevent others from going through a similar situation. I want the dealership to be held accountable.'"
+let rol = "for";
 
 module.exports = { simplifyLaw, expandLaw , getMCQs , getCaseStudy , setCourtRoom };
 

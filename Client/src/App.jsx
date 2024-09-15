@@ -7,6 +7,7 @@ import Leaderboard from './screens/Leaderboard.jsx';
 import LOTD from './screens/LOTDPage.jsx';
 import MCQPage from './screens/McqPage.jsx';
 import StartPage from './screens/StartPage.jsx';
+import Simulate from './screens/Simulate.jsx';
 
 function App() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -160,11 +161,8 @@ function App() {
                 <MCQPage mcqData={mcqData} setPageNumber={setPageNumber} />
               }
             />
-            <Route path="/Case" element={
-              <CaseStudy
-                csData={caseStudyData ? caseStudyData : {}}
-                gotCase={gotCase} 
-              />} />
+            <Route path="/Case" element={<CaseStudy csData={caseStudyData ? caseStudyData : {}} />} />
+            <Route path="/Simulate" element={<Simulate />} />
             <Route path="/Leaderboard" element={<Leaderboard />} />
           </Routes>
         </div>
