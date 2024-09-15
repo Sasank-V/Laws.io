@@ -21,6 +21,7 @@ function App() {
   const [mcqData, setMcqData] = useState([]);
   const [shortLoading, setShortLoading] = useState(true);
   const [detailedLoading, setDetailedLoading] = useState(true);
+  const [gotCase, setGotCase] = useState(false);
 
   const url = 'http://localhost:3000/ai';
 
@@ -84,7 +85,9 @@ function App() {
     const fetchCase = async () => {
       const data = await getCaseStudy(law);
       if (data) {
-        setCaseStudyData(data);
+        const cs = Object.keys(data).map((key) => data[key]);
+        setCaseStudyData(cs);
+        setGotCase(true);
       }
     };
 
